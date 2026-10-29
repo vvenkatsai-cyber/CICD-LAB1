@@ -1,0 +1,22 @@
+name: My First CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Project Code
+        uses: actions/checkout@v4
+
+      - name: Check HTML File
+        run: test -f index.html
+
+      - name: Test Website Heading
+        run: grep -q "Welcome to My College" index.html
+
+      - name: Show Success
+        run: echo "All tests passed!"
